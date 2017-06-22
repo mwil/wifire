@@ -1,0 +1,57 @@
+[timestart] 692150
+[size] 1592 943
+[pos] -1 -1
+*-13.000000 718890 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] wifire_frame_decoder_tb.
+@28
+wifire_frame_decoder_tb.clk
+wifire_frame_decoder_tb.reset
+@200
+-
+@28
+wifire_frame_decoder_tb.rcv_running
+wifire_frame_decoder_tb.rcv_sfd
+@22
+wifire_frame_decoder_tb.rcv_symbol[3:0]
+@28
+wifire_frame_decoder_tb.rcv_sym_stb
+@200
+-
+@28
+wifire_frame_decoder_tb.decoder.int_sym_stb
+wifire_frame_decoder_tb.decoder.sym_state
+@22
+wifire_frame_decoder_tb.decoder.cur_data[7:0]
+@28
+wifire_frame_decoder_tb.decoder.state[2:0]
+@22
+wifire_frame_decoder_tb.decoder.addr_state[4:0]
+@28
+wifire_frame_decoder_tb.decoder.dst_addr_mode[1:0]
+wifire_frame_decoder_tb.decoder.panidc
+wifire_frame_decoder_tb.decoder.src_addr_mode[1:0]
+@200
+-
+@22
+wifire_frame_decoder_tb.frame_ctrl[15:0]
+wifire_frame_decoder_tb.seqno[7:0]
+wifire_frame_decoder_tb.dst_pan[15:0]
+wifire_frame_decoder_tb.dst_addr[63:0]
+wifire_frame_decoder_tb.src_pan[15:0]
+wifire_frame_decoder_tb.src_addr[63:0]
+@28
+wifire_frame_decoder_tb.valid_len
+wifire_frame_decoder_tb.valid_frame_ctrl
+wifire_frame_decoder_tb.valid_seqno
+wifire_frame_decoder_tb.valid_addr
+wifire_frame_decoder_tb.valid_msdu
+@200
+-
+@22
+wifire_frame_decoder_tb.msdu[7:0]
+@28
+wifire_frame_decoder_tb.msdu_stb
+@23
+wifire_frame_decoder_tb.msdu_pos[7:0]
+[pattern_trace] 1
+[pattern_trace] 0

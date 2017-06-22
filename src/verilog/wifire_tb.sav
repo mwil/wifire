@@ -1,0 +1,46 @@
+[timestart] 333050000
+[size] 1600 1115
+[pos] -1 -1
+*-23.000000 296500000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] wifire_tb.
+[treeopen] wifire_tb.wifire.
+@28
+wifire_tb.clk
+wifire_tb.reset
+@200
+-
+@22
+wifire_tb.rcv_power_level[31:0]
+@28
+wifire_tb.rcv_sfd
+@200
+-
+@28
+wifire_tb.wb_stb
+wifire_tb.wb_ack
+@22
+wifire_tb.wb_adr[15:0]
+wifire_tb.data[31:0]
+@200
+-
+@22
+wifire_tb.wifire.msdu[7:0]
+wifire_tb.wifire.msdu_pos[7:0]
+@28
+wifire_tb.wifire.valid_msdu
+wifire_tb.wifire.valid_addr
+@29
+wifire_tb.wifire.valid_len
+@200
+-
+@22
+wifire_tb.wifire.rcv_power_level_i[31:0]
+@200
+-
+@22
+wifire_tb.data[31:0]
+@28
+wifire_tb.irq_header
+wifire_tb.irq_msdu
+[pattern_trace] 1
+[pattern_trace] 0

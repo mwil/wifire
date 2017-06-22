@@ -1,0 +1,18 @@
+connect 192.168.10.3
+
+add -m type --data -m dst --mode 2 --pan 0x22 --addr 0xFFFF -m src --mode 2 --pan 0x22 --addr 0x00 -j JAM 
+add -m type --data -m dst --mode 2 --pan 0x22 --addr 0xFFFF -m src --mode 2 --pan 0x22 --addr 0x01 -j JAM 
+add -m type --data -m dst --mode 2 --pan 0x22 --addr 0xFFFF -m src --mode 2 --pan 0x22 --addr 0x02 -j JAM 
+add -m type --data -m dst --mode 2 --pan 0x22 --addr 0xFFFF -m src --mode 2 --pan 0x22 --addr 0x03 -j JAM 
+add -m type --data -m dst --mode 2 --pan 0x22 --addr 0xFFFF -m src --mode 2 --pan 0x22 --addr 0x04 -j JAM 
+add -m type --data -m dst --mode 2 --pan 0x22 --addr 0xFFFF -m src --mode 2 --pan 0x22 --addr 0x05 -j JAM 
+add -m type --data -m dst --mode 2 --pan 0x22 --addr 0xFFFF -m src --mode 2 --pan 0x22 --addr 0x07 -j JAM 
+add -m type --data -m dst --mode 2 --pan 0x22 --addr 0xFFFF -m src --mode 2 --pan 0x22 --addr 0x08 -j JAM 
+add -m type --data -m dst --mode 2 --pan 0x22 --addr 0xFFFF -m src --mode 2 --pan 0x22 --addr 0x09 -j JAM 
+add -m type --data -m dst --mode 2 --pan 0x22 --addr 0xFFFF -m src --mode 2 --pan 0x22 --addr 0x0A -j JAM 
+add -m src --mode 2 --pan 0x22 --addr 0x0B -j JAM 
+add -m type --data -m dst --mode 2 --pan 0x22 --addr 0xFFFF -m src --mode 2 --pan 0x22 --addr 0x06 -j JAM 
+add -j JAM
+
+commit
+exit

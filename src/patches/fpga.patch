@@ -1,0 +1,115 @@
+diff --git a/fpga/usrp2/top/u2_rev3/u2_core.v b/fpga/usrp2/top/u2_rev3/u2_core.v
+index 30b47b8..eaf7d06 100644
+--- a/fpga/usrp2/top/u2_rev3/u2_core.v
++++ b/fpga/usrp2/top/u2_rev3/u2_core.v
+@@ -527,13 +527,14 @@ module u2_core
+    //    1 = controlled by HW, 0 = by SW
+    //    In Rev3 there are only 6 leds, and the highest one is on the ETH connector
+    
++	wire sfd_led;
+    wire [7:0] 	 led_src, led_sw;
+-   wire [7:0] 	 led_hw = {run_tx, run_rx, clk_status, serdes_link_up, 1'b0};
++   wire [7:0] 	 led_hw = {run_tx, run_rx, clk_status, serdes_link_up, sfd_led};
+    
+    setting_reg #(.my_addr(3),.width(8)) sr_led (.clk(wb_clk),.rst(wb_rst),.strobe(set_stb),.addr(set_addr),
+ 				      .in(set_data),.out(led_sw),.changed());
+ 
+-   setting_reg #(.my_addr(8),.width(8), .at_reset(8'b0001_1110)) 
++   setting_reg #(.my_addr(8),.width(8), .at_reset(8'b0001_1111)) 
+    sr_led_src (.clk(wb_clk),.rst(wb_rst), .strobe(set_stb),.addr(set_addr), .in(set_data),.out(led_src),.changed());
+ 
+    assign 	 leds = (led_src & led_hw) | (~led_src & led_sw);
+@@ -543,14 +544,17 @@ module u2_core
+ 
+    // Pass interrupts on dsp_clk to wb_clk.  These need edge triggering in the pic
+    wire 	 underrun_wb, overrun_wb, pps_wb;
+-
++	wire irq_wifire_sfd, irq_wifire_sfd_wb, irq_wifire_header, irq_wifire_msdu;
++		
+    oneshot_2clk underrun_1s (.clk_in(dsp_clk), .in(underrun), .clk_out(wb_clk), .out(underrun_wb));
+    oneshot_2clk overrun_1s (.clk_in(dsp_clk), .in(overrun), .clk_out(wb_clk), .out(overrun_wb));
+    oneshot_2clk pps_1s (.clk_in(dsp_clk), .in(pps_int), .clk_out(wb_clk), .out(pps_wb));
+-   
++   oneshot_2clk wifire_1s (.clk_in(dsp_clk), .in(irq_wifire_sfd), .clk_out(wb_clk), .out(irq_wifire_sfd_wb));
++	
+    assign irq= {{8'b0},
+ 		{8'b0},
+-		{3'b0, periodic_int, clk_status, serdes_link_up, uart_tx_int, uart_rx_int},
++		{irq_wifire_msdu, irq_wifire_header, irq_wifire_sfd_wb, periodic_int, clk_status,
++		  serdes_link_up, uart_tx_int, uart_rx_int},
+ 		{pps_wb,overrun_wb,underrun_wb,PHY_INTn,i2c_int,spi_int,onetime_int,buffer_int}};
+    
+    pic pic(.clk_i(wb_clk),.rst_i(wb_rst),.cyc_i(s8_cyc),.stb_i(s8_stb),.adr_i(s8_adr[4:2]),
+@@ -736,4 +740,29 @@ module u2_core
+    assign debug_gpio_0 = 32'd0;
+    assign debug_gpio_1 = 32'd0;
+    
++	wire [31:0] rcv_power_level;
++	wire rcv_sym_stb, rcv_running;
++	wire [3:0] rcv_sym;
++	 
++	receiver_overall_reset_cw gregs_receiver (
++    .clk(dsp_clk), 
++    .ce(1), 
++    .gateway_in(sample_rx[31:17]), 
++    .gateway_in1(sample_rx[15:1]), 
++    .jamming_sfd(irq_wifire_sfd), 
++    .power_level(rcv_power_level), 
++    .sylbole_clk(rcv_sym_stb), 
++    .symbole(rcv_sym), 
++    .symbole_running(rcv_running)
++    );
++	 
++	wifire #(.BASE(240)) wifire (
++	  .dsp_clk(dsp_clk),.reset(dsp_rst),
++	  .set_stb(set_stb_dsp), .set_addr(set_addr_dsp), .set_data(set_data_dsp),
++	  .wb_clk_i(wb_clk), .wb_rst_i(wb_rst), .wb_we_i(se_we), .wb_stb_i(se_stb),
++	  .wb_adr_i(se_adr), .wb_dat_i(se_dat_o), .wb_dat_o(se_dat_i), .wb_ack_o(se_ack),
++	  .rcv_sym_i(rcv_sym), .rcv_sym_stb_i(rcv_sym_stb), .rcv_sfd_i(irq_wifire_sfd), .rcv_running_i(rcv_running),
++	  .rcv_power_level_i(rcv_power_level),
++	  .irq_header_o(irq_wifire_header),.irq_msdu_o(irq_wifire_msdu));
++	
+ endmodule // u2_core
+diff --git a/fpga/usrp2/vrt/vita_tx_chain.v b/fpga/usrp2/vrt/vita_tx_chain.v
+index 2ec7818..c863742 100644
+--- a/fpga/usrp2/vrt/vita_tx_chain.v
++++ b/fpga/usrp2/vrt/vita_tx_chain.v
+@@ -30,7 +30,8 @@ module vita_tx_chain
+    wire [31:0] 		error_code;
+    wire 		clear_seqnum;
+    wire [31:0] 		current_seqnum;
+-   
++   wire report;
++	
+    assign underrun = error;
+    assign message = error_code;
+    
+@@ -42,6 +43,10 @@ module vita_tx_chain
+      (.clk(clk),.rst(reset),.strobe(set_stb),.addr(set_addr),
+       .in(set_data),.out(streamid),.changed(clear_seqnum));
+ 
++	setting_reg #(.my_addr(BASE_CTRL+6), .width(1), .at_reset(1)) sr_report
++     (.clk(clk),.rst(reset),.strobe(set_stb),.addr(set_addr),
++      .in(set_data),.out(report),.changed());
++
+    vita_tx_deframer #(.BASE(BASE_CTRL), 
+ 		      .MAXCHAN(MAXCHAN), 
+ 		      .USE_TRANS_HEADER(USE_TRANS_HEADER)) 
+@@ -73,7 +78,7 @@ module vita_tx_chain
+    
+    gen_context_pkt #(.PROT_ENG_FLAGS(PROT_ENG_FLAGS)) gen_flow_pkt
+      (.clk(clk), .reset(reset), .clear(clear_vita),
+-      .trigger(trigger & (DO_FLOW_CONTROL==1)), .sent(), 
++      .trigger(trigger & (DO_FLOW_CONTROL==1) & report), .sent(), 
+       .streamid(streamid), .vita_time(vita_time), .message(32'd0),
+       .seqnum(current_seqnum),
+       .data_o(flow_data), .src_rdy_o(flow_src_rdy), .dst_rdy_i(flow_dst_rdy));
+@@ -84,7 +89,7 @@ module vita_tx_chain
+    
+    gen_context_pkt #(.PROT_ENG_FLAGS(PROT_ENG_FLAGS)) gen_tx_err_pkt
+      (.clk(clk), .reset(reset), .clear(clear_vita),
+-      .trigger((error|ack) & (REPORT_ERROR==1)), .sent(), 
++      .trigger((error|ack) & (REPORT_ERROR==1) & report), .sent(), 
+       .streamid(streamid), .vita_time(vita_time), .message(message),
+       .seqnum(current_seqnum),
+       .data_o(err_data_int), .src_rdy_o(err_src_rdy_int), .dst_rdy_i(err_dst_rdy_int));

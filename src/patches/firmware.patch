@@ -1,0 +1,114 @@
+diff --git a/firmware/microblaze/lib/dbsm.c b/firmware/microblaze/lib/dbsm.c
+index cee343e..0d214d6 100644
+--- a/firmware/microblaze/lib/dbsm.c
++++ b/firmware/microblaze/lib/dbsm.c
+@@ -188,6 +188,9 @@ dbsm_process_helper(dbsm_t *sm, int buf_this)
+     // does s/w handle this packet?
+     //
+     if (sm->inspect(sm, buf_this)){
++      /* inspector could have disabled the dbsm, check that */
++      if (!sm->running)
++        return;
+       // s/w handled the packet; refill the buffer
+       dbsm_receive_to_buf(sm, buf_this);
+       buffer_state[buf_this] = BS_FILLING;
+diff --git a/firmware/microblaze/lib/net_common.c b/firmware/microblaze/lib/net_common.c
+index 6305408..6ed7c18 100644
+--- a/firmware/microblaze/lib/net_common.c
++++ b/firmware/microblaze/lib/net_common.c
+@@ -293,7 +293,7 @@ handle_icmp_packet(struct ip_addr src, struct ip_addr dst,
+   case ICMP_DUR:	// Destinatino Unreachable
+     if (icmp->code == ICMP_DUR_PORT){	// port unreachable
+       //handle destination port unreachable (the host ctrl+c'd the app):
+-
++#if 0
+       //end async update packets per second
+       sr_tx_ctrl->cyc_per_up = 0;
+ 
+@@ -301,7 +301,7 @@ handle_icmp_packet(struct ip_addr src, struct ip_addr dst,
+       sr_rx_ctrl->cmd = 1 << 31; //no samples now
+       sr_rx_ctrl->time_secs = 0;
+       sr_rx_ctrl->time_ticks = 0; //latch the command
+-
++#endif
+       //struct udp_hdr *udp = (struct udp_hdr *)((char *)icmp + 28);
+       //printf("icmp port unr %d\n", udp->dest);
+       putchar('i');
+diff --git a/firmware/microblaze/lib/pic.c b/firmware/microblaze/lib/pic.c
+index 226da5f..882cf83 100644
+--- a/firmware/microblaze/lib/pic.c
++++ b/firmware/microblaze/lib/pic.c
+@@ -21,7 +21,7 @@
+ #include "memory_map.h"
+ 
+ 
+-#define NVECTORS 8
++#define NVECTORS 16
+ 
+ /*
+  * Our secondary interrupt vector.
+@@ -34,6 +34,14 @@ irq_handler_t pic_vector[NVECTORS] = {
+   nop_handler,
+   nop_handler,
+   nop_handler,
++  nop_handler,
++  nop_handler,
++  nop_handler,
++  nop_handler,
++  nop_handler,
++  nop_handler,
++  nop_handler,
++  nop_handler,
+   nop_handler
+ };
+ 
+@@ -44,7 +52,7 @@ pic_init(void)
+   // uP is level triggered
+ 
+   pic_regs->mask = ~0;				       // mask all interrupts
+-  pic_regs->edge_enable = PIC_ONETIME_INT | PIC_UNDERRUN_INT | PIC_OVERRUN_INT | PIC_PPS_INT;
++  pic_regs->edge_enable = PIC_ONETIME_INT | PIC_UNDERRUN_INT | PIC_OVERRUN_INT | PIC_PPS_INT | IRQ_TO_MASK(13);
+   pic_regs->polarity = ~0 & ~PIC_PHY_INT;	       // rising edge
+   pic_regs->pending = ~0;			       // clear all pending ints
+ }
+@@ -88,6 +96,16 @@ pic_register_handler(unsigned irq, irq_handler_t handler)
+ }
+ 
+ void
++pic_unregister_handler(unsigned irq)
++{
++	if (irq >= NVECTORS)
++	  return;
++	pic_regs->mask |= IRQ_TO_MASK(irq);
++
++	pic_vector[irq] = &nop_handler;
++}
++
++void
+ nop_handler(unsigned irq)
+ {
+   // nop
+diff --git a/firmware/microblaze/lib/pic.h b/firmware/microblaze/lib/pic.h
+index 68918f9..503fab4 100644
+--- a/firmware/microblaze/lib/pic.h
++++ b/firmware/microblaze/lib/pic.h
+@@ -23,6 +23,7 @@ typedef void (*irq_handler_t)(unsigned irq);
+ 
+ void pic_init(void);
+ void pic_register_handler(unsigned irq, irq_handler_t handler);
++void pic_unregister_handler(unsigned irq);
+ 
+ void nop_handler(unsigned irq);	// default handler does nothing
+ 
+diff --git a/firmware/microblaze/usrp2/memory_map.h b/firmware/microblaze/usrp2/memory_map.h
+index eac0c21..3301508 100644
+--- a/firmware/microblaze/usrp2/memory_map.h
++++ b/firmware/microblaze/usrp2/memory_map.h
+@@ -467,6 +467,7 @@ typedef struct {
+   volatile uint32_t     policy;
+   volatile uint32_t     cyc_per_up;
+   volatile uint32_t     packets_per_up;
++  volatile uint32_t     report;
+ } sr_tx_ctrl_t;
+ 
+ #define sr_tx_ctrl ((sr_tx_ctrl_t *) _SR_ADDR(SR_TX_CTRL))

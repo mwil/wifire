@@ -1,0 +1,36 @@
+#
+# Copyright 2009-2010 Ettus Research LLC
+# Copyright 2009-2011 Disco Labs, TU Kaiserslautern
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
+#
+
+env = Environment(CCFLAGS="-O2 -Wall -Wextra -ansi -fvisibility=hidden")
+
+# setup_tool should control settings for both RX and TX chain
+env.Append(CCFLAGS="-DRX -DTX")
+
+BOOST_LIBS = ["boost_program_options-mt"]
+
+LIB_PATH = ["/usr/lib", "/usr/local/lib", "/opt/local/lib"]
+INCLUDE_PATH = ["/opt/local/include"]
+
+UHD = "/Users/mwilhelm/src/wifire-uhd"
+UHD_HOST_INCLUDE = UHD + "/host/include"
+UHD_HOST_LIB = UHD + "/host/build/lib"
+
+env.Program("setup_tool.cpp", 
+			LIBS=["uhd"]+BOOST_LIBS, 
+			LIBPATH=[UHD_HOST_LIB]+LIB_PATH, 
+			CPPPATH=[UHD_HOST_INCLUDE]+INCLUDE_PATH)

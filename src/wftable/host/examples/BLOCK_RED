@@ -1,0 +1,17 @@
+flush
+
+add -m src --addr 2 --pan 1 --mode 2 -m dst --addr 3 --pan 1 --mode 2 -j JAM
+add -m src --addr 3 --pan 1 --mode 2 -m dst --addr 2 --pan 1 --mode 2 -j JAM
+
+add -m src --addr 1 --pan 2 --mode 2 -j JAM
+add -m src --addr 2 --pan 2 --mode 2 -j JAM
+
+add -m src --addr 1 --pan 3 --mode 2 -j JAM
+add -m src --addr 2 --pan 3 --mode 2 -j JAM
+
+connect 192.168.10.2
+commit
+connect 192.168.10.5
+commit
+
+exit

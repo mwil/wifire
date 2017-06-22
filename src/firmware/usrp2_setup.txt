@@ -1,0 +1,322 @@
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+Peek register 0xCC30 with 0x10D70000.
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+I2C Write: addr=0x50 len=1
+Peek register 0xCC30 with 0x10D70000.
+SPI Tansaction: dev=0x1, data=0x940
+SPI Tansaction: dev=0x1, data=0xA04
+SPI Tansaction: dev=0x1, data=0x400
+SPI Tansaction: dev=0x1, data=0x500
+SPI Tansaction: dev=0x1, data=0x605
+SPI Tansaction: dev=0x1, data=0xB00
+SPI Tansaction: dev=0x1, data=0xC01
+SPI Tansaction: dev=0x1, data=0x844
+SPI Tansaction: dev=0x1, data=0x5A01
+SPI Tansaction: dev=0x1, data=0x4309
+SPI Tansaction: dev=0x1, data=0x5A01
+SPI Tansaction: dev=0x1, data=0x4209
+SPI Tansaction: dev=0x1, data=0x5A01
+SPI Tansaction: dev=0x1, data=0x3F08
+SPI Tansaction: dev=0x1, data=0x4F80
+SPI Tansaction: dev=0x1, data=0x5A01
+SPI Tansaction: dev=0x1, data=0x4000
+SPI Tansaction: dev=0x1, data=0x5180
+SPI Tansaction: dev=0x1, data=0x5A01
+SPI Tansaction: dev=0x1, data=0x4100
+SPI Tansaction: dev=0x1, data=0x5244
+SPI Tansaction: dev=0x1, data=0x5A01
+SPI Tansaction: dev=0x2, data=0x4
+SPI Tansaction: dev=0x2, data=0x180
+SPI Tansaction: dev=0x2, data=0x200
+SPI Tansaction: dev=0x2, data=0x300
+SPI Tansaction: dev=0x2, data=0x480
+SPI Tansaction: dev=0x2, data=0x500
+SPI Tansaction: dev=0x2, data=0x60F
+SPI Tansaction: dev=0x2, data=0x700
+SPI Tansaction: dev=0x2, data=0x800
+SPI Tansaction: dev=0x2, data=0x900
+SPI Tansaction: dev=0x2, data=0xA0F
+SPI Tansaction: dev=0x2, data=0xB00
+SPI Tansaction: dev=0x2, data=0xC00
+SPI Tansaction: dev=0x2, data=0x180
+Poked register 0xD408 with 0xF.
+Poked register 0xD404 with 0x9.
+Poked register 0xD6CC with 0x1.
+Poked register 0xD6DC with 0x16A.
+Poked register 0xD6E0 with 0x1.
+Poked register 0xD6D0 with 0x14D00000.
+Poked register 0xD6D4 with 0x1.
+Poked register 0xD6D8 with 0x0.
+Poked register 0xD710 with 0x5F5E100.
+Poked register 0xD784 with 0x1.
+Poked register 0xD780 with 0x0.
+Poked register 0xD788 with 0x2.
+Poked register 0xD78C with 0x2.
+Poked register 0xD794 with 0x80000059.
+Poked register 0xD680 with 0x0.
+Poked register 0xD688 with 0x304.
+Poked register 0xD684 with 0x4000400.
+SPI Tansaction: dev=0x2, data=0x180
+Poked register 0xD740 with 0x0.
+Poked register 0xD748 with 0x304.
+Poked register 0xD744 with 0x9B209B2.
+Poked register 0xD708 with 0x0.
+Poked register 0xD400 with 0x10.
+SPI Tansaction: dev=0x1, data=0x844
+SPI Tansaction: dev=0x1, data=0x5A01
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x55 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+I2C Write: addr=0x54 len=1
+SPI Tansaction: dev=0x4, data=0x2F0010
+SPI Tansaction: dev=0x20, data=0x2F0010
+SPI Tansaction: dev=0x1, data=0x560F
+SPI Tansaction: dev=0x1, data=0x5780
+SPI Tansaction: dev=0x1, data=0x5A01
+SPI Tansaction: dev=0x1, data=0x5580
+SPI Tansaction: dev=0x1, data=0x540F
+SPI Tansaction: dev=0x1, data=0x5A01
+Poked register 0xC804 with 0x0.
+Poked register 0xC800 with 0x0.
+Poked register 0xC80C with 0x0.
+SPI Tansaction: dev=0x1, data=0x4309
+SPI Tansaction: dev=0x1, data=0x5A01
+Poked register 0xC804 with 0x0.
+Poked register 0xC800 with 0x0.
+Poked register 0xC808 with 0x0.
+SPI Tansaction: dev=0x1, data=0x4209
+SPI Tansaction: dev=0x1, data=0x5A01
+SPI Tansaction: dev=0x1, data=0x4208
+SPI Tansaction: dev=0x1, data=0x5A01
+Poked register 0xC808 with 0x55400100.
+Poked register 0xC80C with 0x15000000.
+Poked register 0xC804 with 0xF8100000.
+Poked register 0xC804 with 0xF8107000.
+Poked register 0xE400 with 0x800.
+Poked register 0xE402 with 0x2000.
+Poked register 0xE402 with 0x4000.
+SPI Tansaction: dev=0x10, data=0x30072
+SPI Tansaction: dev=0x10, data=0xA23
+SPI Tansaction: dev=0x10, data=0x4
+SPI Tansaction: dev=0x10, data=0x38225
+SPI Tansaction: dev=0x10, data=0x1C006
+SPI Tansaction: dev=0x10, data=0x82A7
+SPI Tansaction: dev=0x10, data=0x1C218
+SPI Tansaction: dev=0x10, data=0x6889
+SPI Tansaction: dev=0x10, data=0x3C0A
+SPI Tansaction: dev=0x10, data=0x7FB
+SPI Tansaction: dev=0x10, data=0xC
+Poked register 0xE400 with 0x8000.
+Poked register 0xE408 with 0x9000.
+Poked register 0xE404 with 0x9800.
+Poked register 0xE40C with 0x9800.
+Poked register 0xE402 with 0x4000.
+Poked register 0xE40A with 0x6000.
+Poked register 0xE406 with 0x4000.
+Poked register 0xE40E with 0x4000.
+SPI Tansaction: dev=0x10, data=0xC43
+SPI Tansaction: dev=0x10, data=0x4
+SPI Tansaction: dev=0x10, data=0x38265
+SPI Tansaction: dev=0x10, data=0x38A65
+Poked register 0xE400 with 0x8000.
+Poked register 0xE408 with 0x9000.
+Poked register 0xE404 with 0x9800.
+Poked register 0xE40C with 0x9800.
+Poked register 0xE402 with 0x4000.
+Poked register 0xE40A with 0x6000.
+Poked register 0xE406 with 0x4000.
+Poked register 0xE40E with 0x4000.
+Poked register 0xE400 with 0x8000.
+Poked register 0xE408 with 0x9000.
+Poked register 0xE404 with 0x9800.
+Poked register 0xE40C with 0x9800.
+Poked register 0xE402 with 0x4000.
+Poked register 0xE40A with 0x6000.
+Poked register 0xE406 with 0x4000.
+Poked register 0xE40E with 0x4000.
+SPI Tansaction: dev=0x10, data=0x3C
+SPI Tansaction: dev=0x10, data=0x6889
+SPI Tansaction: dev=0x10, data=0x3FB
+SPI Tansaction: dev=0x10, data=0x20B
+Poked register 0xD694 with 0x10.
+Poked register 0xD750 with 0x1.
+Poked register 0xD748 with 0x19.
+Poked register 0xD744 with 0xA2B0A2B.
+Poked register 0xE400 with 0x8000.
+Poked register 0xE408 with 0x9000.
+Poked register 0xE404 with 0x9800.
+Poked register 0xE40C with 0x9800.
+Poked register 0xE402 with 0x4000.
+Poked register 0xE40A with 0x6000.
+Poked register 0xE406 with 0x4000.
+Poked register 0xE40E with 0x4000.
+SPI Tansaction: dev=0x10, data=0x843
+SPI Tansaction: dev=0x10, data=0x11114
+SPI Tansaction: dev=0x10, data=0x38245
+SPI Tansaction: dev=0x10, data=0x38A45
+SPI Tansaction: dev=0x2, data=0x180
+Poked register 0xD740 with 0xCCD.
+SPI Tansaction: dev=0x10, data=0x2BC
+SPI Tansaction: dev=0x10, data=0x6889
+Poked register 0xD688 with 0x19.
+Poked register 0xD684 with 0x4000400.
+Poked register 0xE400 with 0x8000.
+Poked register 0xE408 with 0x9000.
+Poked register 0xE404 with 0x9800.
+Poked register 0xE40C with 0x9800.
+Poked register 0xE402 with 0x4000.
+Poked register 0xE40A with 0x6000.
+Poked register 0xE406 with 0x4000.
+Poked register 0xE40E with 0x4000.
+SPI Tansaction: dev=0x10, data=0x843
+SPI Tansaction: dev=0x10, data=0x11114
+SPI Tansaction: dev=0x10, data=0x38245
+SPI Tansaction: dev=0x10, data=0x38A45
+Poked register 0xD680 with 0xFFFFF333.
+SPI Tansaction: dev=0x10, data=0x60B
+SPI Tansaction: dev=0x10, data=0x6FB

@@ -1,0 +1,6 @@
+flush
+
+connect 192.168.10.5
+commit
+
+exit

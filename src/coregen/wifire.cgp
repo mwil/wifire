@@ -1,0 +1,22 @@
+# Date: Tue Jan 25 14:21:02 2011
+
+SET addpads = false
+SET asysymbol = true
+SET busformat = BusFormatSquareBracketNotRipped
+SET createndf = false
+SET designentry = Verilog
+SET device = xc3s2000
+SET devicefamily = spartan3
+SET flowvendor = Other
+SET formalverification = false
+SET foundationsym = false
+SET implementationfiletype = Ngc
+SET package = fg456
+SET removerpms = false
+SET simulationfiles = Behavioral
+SET speedgrade = -5
+SET verilogsim = true
+SET vhdlsim = false
+SET workingdirectory = ./tmp/
+
+# CRC: 69372abf
