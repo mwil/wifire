@@ -1,4 +1,6 @@
 #!/usr/bin/env python2
+from __future__ import print_function
+
 import struct
 import sys
 
@@ -35,6 +37,7 @@ logfile = open(filename, "w")
 
 def log(x):
     global logfile
+
     print(x)
     logfile.write(x + "\n")
 
@@ -65,6 +68,7 @@ try:
             except struct.error:
                 log("Undecodeable packet: %s" % (packet))
                 continue
+
             src = data[2]
             dst = data[1]
             seq = data[0]
@@ -74,8 +78,10 @@ try:
                 "%d, FCF:%s, Payload:%s, crc:%s" %
                 (src, repr(packet[4]), dst, repr(packet[2]), seq, len(p[0]),
                  len(packet[7]), repr(packet[0]), repr(packet[7]), crc_state))
+
         elif packet[0][0] == "\x02":  # ack frame
             seq = ord(packet[1])
+
             log("ACK: #%d, crc:%s" % (seq, crc_state))
         else:   # uninteresting packet
             log(packet)
@@ -93,8 +99,10 @@ try:
             parent = data[1]
             etx = data[2]
             # remaining two bytes seem to be crc
+
             log("  CTP Routing: option:%d, parent:%d, etx:%d" %
                 (option, parent, etx))
+
         elif packet[7][:2] == "\x3F\x71":   # ctp data frame
             try:
                 data = struct.unpack("!BBHHBB", packet[7][2:10])
@@ -109,6 +117,7 @@ try:
             seqno = data[4]
             collect_id = data[5]
             payload = packet[7][10:-2]
+
             log("  CTP Data: option:%d, thl:%d, etx:%d, origin:%d, "
                 "seqno:%d, collect_id:%d, data:%s" %
                 (option, thl, etx, origin, seqno, collect_id, repr(payload)))
@@ -126,6 +135,7 @@ try:
             parent = data[3]
             cost = data[4]
             hopcount = data[5]
+
             log("  LQI routing: origin:%d, seqno:%d, originseqno:%d, "
                 "parent:%d, cost:%d, hopcount:%d" %
                 (originaddr, seqno, originseqno, parent, cost, hopcount))
@@ -136,12 +146,14 @@ try:
             except struct.error:
                 print("Error decoding LQI data frame")
                 continue
+
             originaddr = data[0]
             seqno = data[1]
             originseqno = data[2]
             hopcount = data[3]
             collectionid = data[4]
             payload = data[5]
+
             log("  LQI data: origin:%d, seqno:%d, originseqno:%d, "
                 "hopcount:%d, collect_id:%d, data:%d" %
                 (originaddr, seqno, originseqno,
@@ -159,6 +171,7 @@ try:
             duplicates = data[2]
             packetcount = data[3]
             missedcount = data[4]
+
             log("  Measurement packet: framecount:%d, packetcount:%d, "
                 "missedcount:%d, timediff:%d, duplicates:%d" %
                 (framecount, packetcount, missedcount, timediff, duplicates))
