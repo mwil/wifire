@@ -61,7 +61,7 @@ use constant {
 sub send_cmd {
     my $cmd = shift;
     my @args = @_;
-    
+
     print "Sending Command $cmd\n";
     $sock->send(pack("N*", $cmd, @args)) or die "Could not send package: $!\n";
 }
@@ -69,11 +69,11 @@ sub send_cmd {
 my $f;
 sub get_reports {
 	my $text;
-	
+
 	$SIG{INT} = sub { send_cmd(CMD_UDP_REPORTS, 0); close($sock); close($f); $SIG{INT} = 'DEFAULT'; };
 
 	open($f, ">power") or die $!;
-	
+
 	while (1) {
 		$sock->recv($text, 512) or die "Could not receive: $!\n";
 		my ($cmd, @args) = unpack("N*", $text);
@@ -127,7 +127,7 @@ GetOptions(
 # print help message when no options are passed
 my $periods_valid = defined $periods || (!defined $lines && !defined $irqs);
 my $report_valid = !$report_power || $reports;
-$help = $help || 
+$help = $help ||
     !defined($op_mode) && !defined($periods) && !defined($jam_period) && !defined($idle_period) && !defined($period_variance)
     && !defined($jam_type)
     && !$reset_counters && !$print_irq && !$print_status
@@ -142,20 +142,20 @@ Usage: $0 [options]
 This tool sets up the WiFire-driven USRP2 over UDP.
 
 Available options are:
-    --help		    prints out this text
-    --opmode mode	    changes the mode of operation (txrx|jamming|wifire)
-    --periods n		    count of buffers which are sent, when jamming a signal
-    --jam_type		    tell wifire when to jam (none | sfd | wifire | count | msdu)
-    --tune		    tell wifire to go into talkative tuning mode
-    --reset		    reset the counters for detected packets
-    --verbose		    tell wifire to print the counters on detection
-    --status		    prints the counters over uart
-    --reports		    gives the tune reports over udp
-    --only_reports	    receives reports and displays them
-    --ip IP		    use another IP address (default: 192.168.10.2)
-    --jam_period n	    specify number of ticks for jamming period (in jamming opmode)
-    --idle_period n	    specify number of ticks for idling period (in jamming opmode)
-    --period_variance n	    specify maximum variance of idling/jamming periods (default: 0)
+    --help              prints out this text
+    --opmode mode       changes the mode of operation (txrx|jamming|wifire)
+    --periods n         count of buffers which are sent, when jamming a signal
+    --jam_type          tell wifire when to jam (none | sfd | wifire | count | msdu)
+    --tune              tell wifire to go into talkative tuning mode
+    --reset             reset the counters for detected packets
+    --verbose           tell wifire to print the counters on detection
+    --status            prints the counters over uart
+    --reports           gives the tune reports over udp
+    --only_reports      receives reports and displays them
+    --ip IP             use another IP address (default: 192.168.10.2)
+    --jam_period n      specify number of ticks for jamming period (in jamming opmode)
+    --idle_period n     specify number of ticks for idling period (in jamming opmode)
+    --period_variance n specify maximum variance of idling/jamming periods (default: 0)
 EOF
     ;
 
@@ -164,10 +164,10 @@ EOF
 
 if ($only_reports) {
   $sock = IO::Socket::INET->new(
-    Proto	=> 'udp',
+    Proto       => 'udp',
     PeerPort    => '49154',
     PeerAddr    => defined $ip ? $ip : '192.168.10.2',
-    LocalPort	=> '49155'
+    LocalPort   => '49155'
   ) or die "Could not create socket: $!\n";
   get_reports();
   exit 0;
@@ -196,7 +196,7 @@ send_cmd(CMD_RESET_COUNTERS) if $reset_counters;
 
 # set jam type
 send_cmd(CMD_SET_JAM_TYPE,
-  ($jam_type eq "wifire" ? 2 : $jam_type eq "sfd" ? 1 : $jam_type eq "count" ? 5 : $jam_type eq "msdu" ? 6 : 0) + 
+  ($jam_type eq "wifire" ? 2 : $jam_type eq "sfd" ? 1 : $jam_type eq "count" ? 5 : $jam_type eq "msdu" ? 6 : 0) +
   ($tune ? 2 : 0)) if defined $jam_type;
 
 # set operation mode
@@ -214,7 +214,7 @@ print "Sent settings.\n";
 
 if ($reports) {
 	send_cmd(CMD_UDP_REPORTS, 1);
-	
+
 	#get_reports();
 }
 
